@@ -1,0 +1,236 @@
+/*
+COLORS
+#F4F4F4 - white
+#000000 - black
+#3FB6BF - logo blue
+#31B773 - logo green
+#E5E5E5 - logo off white
+*/
+
+/* Global styles 
+**********************************/
+/* border box fix */
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+body {
+    font-family: 'Consolas', 'Andale Mono', monospace;
+    color: #000000;
+    background-color: #F4F4F4;
+    margin: 0;
+}
+#container {
+    max-width: 630px;
+    margin: 0 auto;
+    width: 100%;
+}
+a {
+    text-decoration: none;
+    color: #3FB6BF;
+}
+a:hover {
+    color: #31B773;
+    font-style: italic;
+}
+.mobile-tablet-only {
+    display: none;
+}
+
+/* Header
+**********************************/
+header, nav ul {
+    height: 100px;
+}
+#header-logo {
+    float: left;
+    width: 100px; /* display at half of actual size, because of Retina users */
+}
+#header-logo:hover {
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+nav li {
+    display: inline;
+    font-size: 1.7em;
+    list-style-type: none;
+    text-transform: lowercase;
+}
+nav li a {
+    color: #000000;
+    padding: 0 .2em;
+}
+nav li a:hover {
+    background: #000000;
+    color: #F4F4F4;
+    font-style: normal;
+}
+
+/* Main
+**********************************/
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 30px 0 30px 0;
+    gap: 30px;
+}
+.grid-item {
+    position: relative;
+    margin: 0;
+    max-width: 300px;
+    max-height: 300px;
+    width: 100%;
+    margin: 0 auto;
+}
+.grid-item img {
+    max-width: 300px; /* half of actual size */
+    width: 100%;
+}
+.grid-item a:hover img {
+    opacity: 0.9;
+}
+.grid-item figcaption {
+    position: absolute;
+    top: 0;
+    width: 200px;
+    padding-top: 5px;
+    font-style: normal;
+    color: #000000;
+    word-wrap: break-word;
+    /* hide figcaption by default */
+    opacity: 0;
+}
+.grid-item:nth-of-type(odd) figcaption {
+    right: 300px;
+    padding-right: 15px;
+    text-align: right;
+}
+.grid-item:nth-of-type(even) figcaption {
+    left: 300px;
+    padding-left: 15px;
+    text-align: left;
+}
+.grid-item a:hover ~ figcaption {
+    /* show figcaption on hover */
+    opacity: 1;
+}
+.grid-item figcaption:hover {
+    cursor: default;
+}
+
+/* Footer
+**********************************/
+footer p {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/* Media Queries
+**********************************/
+@media screen and (max-width: 1080px) {
+    .grid-container {
+        gap: 25px 30px;
+    }
+    .grid-item {
+        position: static;
+        max-height: none;
+    }
+    .grid-item figcaption {
+        position: static;
+        width: 100%;
+        /* always show figcaption */
+        opacity: 1;
+    }
+    .grid-item:nth-of-type(odd) figcaption {
+        padding-right: 0px;
+        text-align: left;
+    }
+    .grid-item:nth-of-type(even) figcaption {
+        padding-left: 0px;
+        text-align: left;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .mobile-tablet-only {
+        display: initial;
+    }
+    header, nav ul {
+        height: auto;
+    }
+    #header-logo {
+        display: block;
+        float: none;
+        margin: 30px auto 0 auto;
+    }
+    nav ul {
+        display: block;
+        padding-left: 0;
+    }
+    nav li {
+        display: block;
+        text-align: center;
+        margin: 1em;
+    }
+    .grid-container {
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+    .grid-item:nth-of-type(odd) figcaption {
+        text-align: center;
+    }
+    .grid-item:nth-of-type(even) figcaption {
+        text-align: center;
+    }
+    .grid-item > a {
+        pointer-events: none; /* so grid images won't link */
+    }
+    /* grid buttons to use instead as links */
+    .grid-item button {
+        display: block;
+        margin: 0.5em auto 0 auto;
+        padding: 0.5em 1em;
+        background: #000000;
+        color: #F4F4F4;
+        border: none;
+        font-family: 'Consolas', 'Andale Mono', monospace;
+        font-size: 1.1em;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    /* button hover styles, in case there's a desktop user with a small window */
+    .grid-item button:hover {
+        cursor: pointer;
+        background: rgba(0, 0, 0, 0.8)
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .grid-container {
+        display: block;
+    }
+    .grid-item, .grid-item img {
+        max-width: 100%;
+    }
+    .grid-item img {
+        max-height: 600px;
+    }
+    .grid-item figcaption {
+        padding-top: 0.5em;
+        padding-bottom: 2em;
+    }
+    .grid-item figcaption, .grid-item button {
+        font-size: 1.3em;
+    }
+}
